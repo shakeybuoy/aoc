@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/styles.css" />
+  </head>
+  <body>
+    <div id="preloader">
+      <div class="p">LOADING</div>
+    </div>
+    <div class="main">
+      <header class="dropdown">
+        <div class="imgDiv">
+          <img
+            src="https://ageofcrusade.com/images/favicons/apple-icon-114x114.png"
+            alt="AOC LOGO"
+          />
+        </div>
+
+        <div class="dropdown-content">
+          <div class="pageLink">
+            <h1>Home</h1>
+          </div>
+          <div class="pageLink">
+            <h1>Page1</h1>
+          </div>
+          <div class="pageLink">
+            <h1>Page2</h1>
+          </div>
+          <div class="pageLink">
+            <h1>Page3</h1>
+          </div>
+          <div class="pageLink">
+            <h1>Page4</h1>
+          </div>
+        </div>
+      </header>
+
+      <navbar>
+        <div>
+          <a href="#" class="linkHref">
+            <img
+              src="https://ageofcrusade.com/images/favicons/apple-icon-114x114.png"
+              alt="AOC LOGO"
+              id="logo"
+            />
+          </a>
+        </div>
+        <div><a href="#" class="linkHref">Home</a></div>
+        <div>
+          <a href="#" class="linkHref">Act Now!</a>
+        </div>
+        <div><a href="#" class="linkHref">FAQ</a></div>
+        <div><a href="#" class="linkHref">Contact Us</a></div>
+      </navbar>
+    </div>
+    <script src="./scripts/jquery.js"></script>
+    <script src="./scripts/jquey.bez.js"></script>
+    <script src="./scripts/pace.js"></script>
+
+    <script>
+      paceOptions = {
+        ajax: true,
+        document: true,
+        eventLag: false,
+      };
+
+      Pace.on("done", function () {
+        $(".p")
+          .delay(500)
+          .animate(
+            { top: "30%", opacity: "0" },
+            3000,
+            $.bez([0.19, 1, 0.22, 1])
+          );
+
+        $("#preloader")
+          .delay(1500)
+          .animate({ top: "-110vh" }, 2000, $.bez([0.19, 1, 0.22, 1]));
+
+        TweenMax.from(".main", 2, {
+          delay: 2,
+          y: 20,
+          opacity: 0,
+          ease: Expo.easeInOut,
+        });
+      });
+    </script>
+    <script src="./scripts/threex.domevents.js"></script>
+    <script src="./scripts/tween.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r124/three.min.js"></script>
+    <script src="https://unpkg.com/three@0.126.0/examples/js/loaders/GLTFLoader.js"></script>
+    <script src="./script.js"></script>
+  </body>
+</html>
