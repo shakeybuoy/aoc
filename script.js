@@ -53,9 +53,22 @@ function init() {
         camera.position.set(-280, 100, 0);
         camera.lookAt(new THREE.Vector3());
     }
+    var isEscape = false;
+    var back = document.getElementById('backButton');
+    back.addEventListener('click', function (e) {
+        meshDefault()
+        setFalse()
+        popUp.style.display = 'none';
+
+        camera.position.set(-170, 50, 0);
+        camera.lookAt(new THREE.Vector3());
+        model.position.set(r * Math.cos(300 * 0.0174533), 0, r * Math.sin(300 * 0.0174533))
+        spin = true;
+    })
+
     document.onkeydown = function (evt) {
         evt = evt || window.event;
-        var isEscape = false;
+
         if ("key" in evt) {
             isEscape = (evt.key === "Escape" || evt.key === "Esc");
         } else {
@@ -64,6 +77,8 @@ function init() {
         if (isEscape) {
             meshDefault()
             setFalse()
+            popUp.style.display = 'none';
+
             camera.position.set(-170, 50, 0);
             camera.lookAt(new THREE.Vector3());
             model.position.set(r * Math.cos(300 * 0.0174533), 0, r * Math.sin(300 * 0.0174533))
@@ -149,12 +164,18 @@ function onWindowResize() {
 scene.updateMatrixWorld(true);
 
 var domEvents = new THREEx.DomEvents(camera, renderer.domElement)
-
-
+var plName = document.getElementById('plName')
+var popUp = document.getElementById('popUp')
+var para = document.getElementById('para')
 var a = mars;
-domEvents.addEventListener(a.obj, 'click', event => {
+domEvents.addEventListener(a.mesh, 'click', event => {
     meshDefault()
     setFalse()
+
+    popUp.style.display = 'block';
+    plName.innerHTML = 'MARS'
+    para.innerHTML = 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dignissimos cupiditate unde modi consequuntur maiores. Soluta tenetur blanditiis magnam hic ipsum. Ipsum magni nihil quasi, dolorum aliquam distinctio nesciunt numquam autemLorem ipsum dolor sit, amet consectetur adipisicing elit. Dignissimos cupiditate unde modi consequuntur maiores. Soluta tenetur blanditiis magnam hic ipsum. Ipsum magni nihil quasi, dolorum aliquam distinctio nesciunt numquam autem Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dignissimos cupiditate unde modi consequuntur maiores. Soluta tenetur blanditiis magnam hic ipsum. Ipsum magni nihil quasi, dolorum aliquam distinctio nesciunt numquam autemLorem ipsum dolor sit, amet consectetur adipisicing elit. Dignissimos cupiditate unde modi consequuntur maiores. Soluta tenetur blanditiis magnam hic ipsum. Ipsum magni nihil quasi, dolorum aliquam distinctio nesciunt numquam autem Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dignissimos cupiditate unde modi consequuntur maiores. Soluta tenetur blanditiis magnam hic ipsum. Ipsum magni nihil quasi, dolorum aliquam distinctio nesciunt numquam autemLorem ipsum dolor sit, amet consectetur adipisicing elit. Dignissimos cupiditate unde modi consequuntur maiores. Soluta tenetur blanditiis magnam hic ipsum. Ipsum magni nihil quasi, dolorum aliquam distinctio nesciunt numquam autem'
+
     spin = false;
     marsClick = true;
     mars.mesh.position.set(150 * Math.cos(180 * 0.0174533), -30, 150 * Math.sin(180 * 0.0174533))
@@ -165,8 +186,10 @@ domEvents.addEventListener(a.obj, 'click', event => {
     model.position.y = 45
 }, false)
 
+
 var b = mercury;
-domEvents.addEventListener(b.obj, 'click', event => {
+
+domEvents.addEventListener(b.mesh, 'click', event => {
     meshDefault()
     setFalse()
     spin = false;

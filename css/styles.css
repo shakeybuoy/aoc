@@ -14,6 +14,33 @@ html {
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+  scroll-behavior: smooth;
+  scrollbar-color: #fe782bcb transparent;
+  scrollbar-width: thin;
+}
+
+*::-webkit-scrollbar {
+  width: 7px;
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;
+  border-radius: 10px;
+}
+
+*::-webkit-scrollbar-thumb {
+  background: #fe7a2b;
+  border-radius: 10px;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background: #fe7a2b;
+  border-radius: 10px;
+}
+
+*::-webkit-scrollbar-thumb:active {
+  background: #fe7a2b;
+  border-radius: 10px;
 }
 /* loading screen */
 .pace {
@@ -78,46 +105,117 @@ navbar {
 header {
   position: fixed;
   z-index: 1;
+  background: url(../images/frame2.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 684px;
+  width: 245px;
+  left: 10px;
 }
 
 .imgDiv img {
-  transform: skew(0.06turn, -18deg);
-  height: 100px;
+  width: 100px;
   color: #fff;
 }
 .imgDiv {
-  transform: skew(-0.06turn, 18deg);
-  text-align: center;
-  border-bottom: 1px solid #fff;
-  height: 100px;
-  width: 170px;
-  padding: 1em 0;
+  position: relative;
+  margin-top: 70px;
+  margin-left: 70px;
   z-index: 10;
 }
-h1 {
-  color: #fff;
+
+.dropdown-content {
+  margin-left: 60px;
+  margin-top: 90px;
+  position: relative;
 }
 .pageLink {
-  transform: skew(-0.06turn, 18deg);
-  padding: 10px 20px;
-  border-bottom: 1px solid #fff;
-  width: 80px;
-}
-.pageLink h1 {
-  transform: skew(0.06turn, -18deg);
-}
-.dropdown-content {
-  position: absolute;
-  padding: 5px;
-  cursor: pointer;
-  display: block;
+  color: #fe7a2b;
   font-size: 10px;
+  font-family: "Press Start 2P", cursive;
+  padding: 1px 6px 1px 10px;
+  margin-bottom: 20px;
+  letter-spacing: 4px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+.pageLink:hover {
+  color: #fff;
+  text-shadow: 4px 1px 3px #fe7a2b;
+  /* letter-spacing: 5px; */
+  transform: translateX(50px) scale(1.5);
+}
+.popUp {
+  position: relative;
+  display: none;
+}
+.content {
+  position: absolute;
+  top: 60vh;
+  left: 45vw;
+  z-index: 100;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+  color: #fff;
+  text-align: center;
+}
+.content .text {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 130%;
+  height: 100%;
+  background: linear-gradient(
+    217deg,
+    rgba(0, 0, 0, 0.542),
+    rgba(0, 0, 0, 0.364)
+  );
+  border-radius: 5px;
+  font-size: 28px;
+}
+.content img {
+  position: relative;
+  width: 130%;
+}
+.info {
+  text-align: left;
+  overflow-x: hidden;
+  overflow-y: auto;
+  height: 65%;
+  width: 85%;
+  margin-left: 10%;
+  margin-top: 3%;
+}
+.plName {
+  font-size: 2rem;
+  text-align: center;
 }
 
 a {
   text-decoration: none;
   color: #fff;
 }
+#backButton {
+  color: rgb(0, 0, 0);
+  background: #fe7a2b;
+  border-radius: 100px;
+  border: none;
+  padding: 20px 40px;
+  font-size: 20px;
+  position: fixed;
+  top: 5%;
+  right: 2%;
+  cursor: pointer;
+  font-family: "Press Start 2P", cursive;
+  transition: all 0.3s ease-in-out;
+}
+#backButton:hover {
+  letter-spacing: 3px;
+  background: #5ce1e6;
+  transform: scale(1.1);
+}
+
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 600px) {
   header {
