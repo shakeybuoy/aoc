@@ -99,6 +99,13 @@ html {
   font-size: 2em;
 }
 /* loading screen */
+.center-image {
+  position: fixed;
+  top: 50%;
+  left: 58%;
+  transform: translate(-50%, -50%);
+}
+
 navbar {
   display: none;
 }
@@ -108,25 +115,26 @@ header {
   background: url(../images/frame2.png);
   background-position: center;
   background-repeat: no-repeat;
-  background-size: cover;
-  height: 684px;
+  background-size: contain;
+  height: 600px;
   width: 245px;
-  left: 10px;
+  /* left: 10px; */
 }
 
 .imgDiv img {
-  width: 100px;
+  margin-top: -45px;
+  width: 120px;
   color: #fff;
 }
 .imgDiv {
   position: relative;
-  margin-top: 70px;
-  margin-left: 70px;
+  margin-bottom: 70px;
+  margin-left: -20px;
   z-index: 10;
 }
 
 .dropdown-content {
-  margin-left: 60px;
+  margin-left: 80px;
   margin-top: 90px;
   position: relative;
 }
@@ -134,8 +142,7 @@ header {
   color: #fe7a2b;
   font-size: 10px;
   font-family: "Press Start 2P", cursive;
-  padding: 1px 6px 1px 10px;
-  margin-bottom: 20px;
+  margin-bottom: 35px;
   letter-spacing: 4px;
   cursor: pointer;
   transition: all 0.3s ease-in-out;
@@ -143,7 +150,7 @@ header {
 .pageLink:hover {
   color: #fff;
   text-shadow: 4px 1px 3px #fe7a2b;
-  /* letter-spacing: 5px; */
+  letter-spacing: 5px;
   transform: translateX(50px) scale(1.5);
 }
 .popUp {
@@ -152,8 +159,8 @@ header {
 }
 .content {
   position: absolute;
-  top: 60vh;
-  left: 45vw;
+  top: 80vh;
+  left: 47vw;
   z-index: 100;
   transform: translate(-50%, -50%);
   z-index: 1;
@@ -190,6 +197,9 @@ header {
 .plName {
   font-size: 2rem;
   text-align: center;
+  font-family: "Press Start 2P", cursive;
+  letter-spacing: 5px;
+  color: #fe7a2b;
 }
 
 a {
