@@ -7,7 +7,7 @@ const sun = "./images/star.png";
 const mercuryTexture = "./images/mercury.png";
 const venusTexture = "./images/venus.jpeg";
 const earthTexture = "./images/earth.png";
-const marsTexture = "./images/star.png";
+const marsTexture = "./images/mars.jpeg";
 const jupiterTexture = "./images/jupiter.png";
 const textureLoader = new THREE.TextureLoader();
 var renderer, scene, camera, x, y, z, model, mercury, venus, earth, mars, jupiter, sprite, mercuryClick, olympiaClick
@@ -15,7 +15,7 @@ var renderer, scene, camera, x, y, z, model, mercury, venus, earth, mars, jupite
     , earthClick
     , marsClick
     , jupiterClick,
-    modelClick
+    modelClick, stars, starGeo
 var spin = true;
 let r = 70;
 var raycaster, mouse;
@@ -44,7 +44,7 @@ function init() {
     scene = new THREE.Scene();
 
     camera = new THREE.PerspectiveCamera(
-        75,
+        35,
         window.innerWidth / window.innerHeight,
         0.1,
         2000
@@ -57,16 +57,16 @@ function init() {
     objNew.add(sprite);
     objNew.uuid = "Olympia"
     scene.add(objNew);
-    sprite.scale.set(100, 70, 1);
-    sprite.position.set(20, -10, 20);
+    sprite.scale.set(110, 80, 1);
+    sprite.position.set(0, -15, 180);
 
     if (check == false) {
-        camera.position.set(50, 50, 160);
+        camera.position.set(100, 50, 400);
         camera.lookAt(new THREE.Vector3(-400, -50, -120));
     }
     else {
-        camera.position.set(-280, 100, 0);
-        camera.lookAt(new THREE.Vector3());
+        camera.position.set(100, 50, 400);
+        camera.lookAt(new THREE.Vector3(-400, -50, -120));
     }
     var isEscape = false;
     var back = document.getElementById('backButton');
@@ -75,11 +75,11 @@ function init() {
         setFalse()
         popUp.style.display = 'none';
         model.position.set(-320 * Math.cos(0), -50, 0)
-        camera.position.set(50, 50, 160);
+        camera.position.set(100, 50, 400);
         camera.lookAt(new THREE.Vector3(-400, -50, -120));
-        sprite.scale.set(100, 70, 1);
-        sprite.position.set(20, -10, 20);
-        model.scale.set(65, 65, 65)
+        sprite.scale.set(110, 80, 1);
+        sprite.position.set(0, -15, 180);
+        model.scale.set(0.7, 0.7, 0.7)
         spin = true;
     })
 
@@ -95,27 +95,54 @@ function init() {
             meshDefault()
             setFalse()
             popUp.style.display = 'none';
-            model.scale.set(65, 65, 65)
-            camera.position.set(50, 50, 160);
+            model.scale.set(0.7, 0.7, 0.7)
+            camera.position.set(100, 50, 400);
             camera.lookAt(new THREE.Vector3(-400, -50, -120));
             model.position.set(-320 * Math.cos(0), -50, 0)
-            sprite.scale.set(100, 70, 1);
-            sprite.position.set(20, -10, 20);
+            sprite.scale.set(110, 80, 1);
+            sprite.position.set(0, -15, 180);
 
             spin = true;
         }
     };
     setFalse()
 
-    scene.add(new THREE.AxesHelper(1000))
+    // scene.add(new THREE.AxesHelper(1000))
 
-    const bgSpace = new THREE.TextureLoader().load(thirdSide);
+    // starGeo = new THREE.Geometry();
+    // for (let i = 0; i < 10000; i++) {
+    //     stars = new THREE.Vector3(
+    //         Math.random() * 600 - 500,
+    //         Math.random() * 600 - 300,
+    //         Math.random() * 600 - 300
+    //     );
+    //     stars.velocity = 0;
+    //     stars.acceleration = 0.00002;
+    //     starGeo.vertices.push(stars);
+    // }
+
+    // let spriteOne = new THREE.TextureLoader().load('./images/star.png');
+    // let starMaterial = new THREE.PointsMaterial({
+    //     color: 0xaaaaaa,
+    //     size: 0.1,
+    //     map: spriteOne
+    // });
+
+    // stars = new THREE.Points(starGeo, starMaterial);
+    // scene.add(stars);
+
+    const bgSpace = new THREE.TextureLoader().load('./images/Untitled_design_16.png');
     scene.background = bgSpace;
+
+
+    // Lights
     const ambientLight = new THREE.AmbientLight(0x333333);
     scene.add(ambientLight);
     const pointLight = new THREE.PointLight(0xffffff, 1);
     pointLight.position.set(10, 100, 80);
     scene.add(pointLight);
+
+
     window.addEventListener('resize', onWindowResize, false);
     onWindowResize();
     mercury = createPlanete(7.3, mercuryTexture, 0, 'mercury');
@@ -132,11 +159,11 @@ function init() {
 function loadModel() {
     var loader = new THREE.GLTFLoader();
     loader.load(
-        "./Earth/Earth_1.gltf", function (gltf) {
+        "./Earth/PlanetGLB2.glb", function (gltf) {
             model = gltf.scene;
             // model.position.y = 0;
-            model.position.set(-320 * Math.cos(0), -50, 0)
-            model.scale.set(65, 65, 65)
+            model.position.set(-120, 0, 220)
+            model.scale.set(0.22, 0.22, 0.22)
             scene.add(model);
 
         },
@@ -178,7 +205,8 @@ function onClick(event) {
             plOlympia()
         }
         var name = intersects[0].object.parent.name;
-        if (name == 'Scene') {
+
+        if (name == 'COMBINE_LP') {
             console.log(name)
             animateModel()
         }
@@ -187,17 +215,17 @@ function onClick(event) {
 }
 
 function meshDefault() {
-    mercury.mesh.scale.set(1.8, 1.8, 1.8)
-    venus.mesh.scale.set(1.8, 1.8, 1.8)
+    mercury.mesh.scale.set(2.5, 2.5, 2.5)
+    venus.mesh.scale.set(1.4, 1.4, 1.4)
     earth.mesh.scale.set(1.8, 1.8, 1.8)
     mars.mesh.scale.set(1.8, 1.8, 1.8)
-    jupiter.mesh.scale.set(2, 2, 2)
+    jupiter.mesh.scale.set(0.24, 0.24, 0.24)
 
-    mercury.mesh.position.set(-70 * Math.cos(0), 0, 20)
-    venus.mesh.position.set(-140 * Math.cos(0), 40, -120)
-    earth.mesh.position.set(-480 * Math.cos(0), 150, 0)
-    mars.mesh.position.set(-507 * Math.cos(0), 250, -240)
-    jupiter.mesh.position.set(-1700 * Math.cos(0), 100, 100)
+    mercury.mesh.position.set(-100, 50, 120)
+    venus.mesh.position.set(-60, 60, -10)
+    earth.mesh.position.set(-480, 100, 0)
+    mars.mesh.position.set(-507, 250, -240)
+    jupiter.mesh.position.set(-170, -20, 300)
 }
 function createPlanete(size, texture, position, name) {
     const geo = new THREE.SphereGeometry(size, 30, 30);
@@ -223,13 +251,22 @@ var domEvents = new THREEx.DomEvents(camera, renderer.domElement)
 
 
 function plView() {
+    //pos
+    sprite.position.set(0, 1000, 0);
+    mercury.mesh.position.set(0, -1000, 0)
+    venus.mesh.position.set(0, 1110, 0)
+    earth.mesh.position.set(110, 1000, 0)
+    mars.mesh.position.set(1120, 1000, 0)
+    jupiter.mesh.position.set(1060, 1000, 0)
+
+
+    // scale
     sprite.scale.set(140, 110, 1);
-    sprite.position.set(0, 0, 0);
     jupiter.mesh.scale.set(0.3, 0.3, 0.3)
     venus.mesh.scale.set(1, 1, 1)
     earth.mesh.scale.set(1, 1, 1)
     mars.mesh.scale.set(0.7, 0.7, 0.7)
-    model.scale.set(60, 60, 60)
+    model.scale.set(0.7, 0.7, 0.7)
 }
 function animateModel() {
     // meshDefault()
@@ -237,15 +274,9 @@ function animateModel() {
     plView()
     spin = false;
     modelClick = true;
-    // model.scale.set(0.1, 0.1, 0.1)
-
+    model.scale.set(0.7, 0.7, 0.7)
     // position
-    mercury.mesh.position.set(0, 70, -8)
-    venus.mesh.position.set(110, 30, 0)
-    earth.mesh.position.set(-110, 40, 0)
-    mars.mesh.position.set(140, -30, 0)
-    jupiter.mesh.position.set(-160, -50, -30)
-    model.position.set(0, -60, 80)
+    model.position.set(0, 0, 0)
     // body
     popUp.style.display = 'block';
     plName.innerHTML = 'Destroyed'
@@ -258,13 +289,9 @@ function plMercury() {
     plView()
     spin = false;
     mercuryClick = true;
+    mercury.mesh.scale.set(7, 7, 7)
     // position
-    mercury.mesh.position.set(0, -15, 150)
-    venus.mesh.position.set(-150, -30, 0)
-    earth.mesh.position.set(150, -30, 0)
-    mars.mesh.position.set(-100, 30, 0)
-    jupiter.mesh.position.set(170, 50, -80)
-    model.position.set(0, 150, -200)
+    mercury.mesh.position.set(0, 0, 0)
     // body
 
     popUp.style.display = 'block';
@@ -278,15 +305,12 @@ function plVenus() {
     plView()
     spin = false;
     venusClick = true;
-    venus.mesh.scale.set(0.8, 0.8, 0.8)
+    venus.mesh.scale.set(2.6, 2.6, 2.6)
 
     // position
-    mercury.mesh.position.set(150, -20, 0)
-    venus.mesh.position.set(0, -20, 150)
-    earth.mesh.position.set(170, 50, -80)
-    mars.mesh.position.set(-150, -30, 0)
-    model.position.set(-190, 80, -200)
-    jupiter.mesh.position.set(0, 100, -80)
+
+    venus.mesh.position.set(0, 0, 0)
+
     // body
 
     popUp.style.display = 'block';
@@ -300,15 +324,10 @@ function plEarth() {
     plView()
     spin = false;
     earthClick = true;
-    earth.mesh.scale.set(0.7, 0.7, 0.7)
+    earth.mesh.scale.set(2, 2, 2)
 
     // position
-    mercury.mesh.position.set(-130, -30, 0)
-    venus.mesh.position.set(-100, 30, 0)
-    earth.mesh.position.set(0, -20, 150)
-    mars.mesh.position.set(0, 110, -80)
-    model.position.set(220, 70, -200)
-    jupiter.mesh.position.set(220, -40, -100)
+    earth.mesh.position.set(0, 0, 0)
     // body
 
     popUp.style.display = 'block';
@@ -323,15 +342,11 @@ function plMars() {
     plView()
     spin = false;
     marsClick = true;
-    mars.mesh.scale.set(0.7, 0.7, 0.7)
+    mars.mesh.scale.set(2, 2, 2)
 
     // position
-    mercury.mesh.position.set(130, -30, 0)
-    venus.mesh.position.set(100, 30, 0)
-    mars.mesh.position.set(0, -20, 150)
-    earth.mesh.position.set(0, 110, -80)
-    model.position.set(-220, 70, -200)
-    jupiter.mesh.position.set(-220, -40, -100)
+
+    mars.mesh.position.set(0, 0, 0)
     // body
 
     popUp.style.display = 'block';
@@ -345,15 +360,11 @@ function plJupiter() {
     plView()
     spin = false;
     jupiterClick = true;
-    jupiter.mesh.scale.set(1, 1, 1)
+    jupiter.mesh.scale.set(0.5, 0.5, 0.5)
 
     // position
-    jupiter.mesh.position.set(0, -120, 40)
-    mercury.mesh.position.set(-100, 30, 0)
-    venus.mesh.position.set(0, 100, -80)
-    earth.mesh.position.set(-140, -35, 0)
-    mars.mesh.position.set(120, 30, 0)
-    model.position.set(270, -70, -160)
+    jupiter.mesh.position.set(0, 0, 0)
+
     // body
 
     popUp.style.display = 'block';
@@ -367,16 +378,11 @@ function plOlympia() {
     plView()
     spin = false;
     olympiaClick = true;
-    model.scale.set(20, 20, 20)
 
     // position
-    sprite.position.set(0, -20, 50);
-    mercury.mesh.position.set(50, 70, -8)
-    venus.mesh.position.set(110, 30, 0)
-    earth.mesh.position.set(-110, 40, 0)
-    mars.mesh.position.set(140, -30, 0)
-    jupiter.mesh.position.set(-160, -50, -30)
-    model.position.set(-50, 90, -50)
+    sprite.scale.set(200, 170, 1);
+
+    sprite.position.set(0, 0, 0);
     // body
 
     popUp.style.display = 'block';
@@ -388,12 +394,6 @@ function plOlympia() {
 function animate() {
     requestAnimationFrame(animate);
     if (spin == true) {
-        mercury.mesh.rotateY(0.004);
-        venus.mesh.rotateY(0.002);
-        earth.mesh.rotateY(0.002);
-        mars.mesh.rotateY(0.0018);
-        jupiter.mesh.rotateY(0.004);
-        model.rotateY(0.002)
         renderer.setClearColor(0x000000, 0);
         renderer.setViewport(0, 0, window.innerWidth, window.innerHeight);
         renderer.render(scene, camera);
@@ -513,7 +513,6 @@ function animate() {
             var camera7 = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.01, 1000);
             camera7.position.z = 250;
             camera7.focalLength = 1000;
-            // objNew.add(camera7)
             camera7.position.set(0, 0, 170);
             camera7.lookAt(0, 0, 0)
             renderer.setClearColor(0x000000, 0);
@@ -521,7 +520,23 @@ function animate() {
             renderer.render(scene, camera7);
         }
     }
+    mercury.mesh.rotateY(0.004);
+    venus.mesh.rotateY(0.002);
+    earth.mesh.rotateY(0.002);
+    mars.mesh.rotateY(0.0018);
+    jupiter.mesh.rotateY(0.004);
+    model.rotateY(0.002)
+    // starGeo.vertices.forEach(p => {
+    //     p.velocity += p.acceleration
+    //     p.z -= p.velocity;
 
+    //     if (p.z < -200) {
+    //         p.z = 200;
+    //         p.velocity = 0;
+    //     }
+    // });
+    // starGeo.verticesNeedUpdate = true;
+    // stars.rotation.z += 0.0002;
 
 }
 
