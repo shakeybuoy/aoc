@@ -74,12 +74,16 @@ function init() {
         meshDefault()
         setFalse()
         popUp.style.display = 'none';
-        model.position.set(-320 * Math.cos(0), -50, 0)
+
         camera.position.set(100, 50, 400);
         camera.lookAt(new THREE.Vector3(-400, -50, -120));
+
         sprite.scale.set(110, 80, 1);
         sprite.position.set(0, -15, 180);
-        model.scale.set(0.7, 0.7, 0.7)
+
+        model.position.set(-120, 0, 220)
+        model.scale.set(0.22, 0.22, 0.22)
+
         spin = true;
     })
 
@@ -95,12 +99,15 @@ function init() {
             meshDefault()
             setFalse()
             popUp.style.display = 'none';
-            model.scale.set(0.7, 0.7, 0.7)
+
             camera.position.set(100, 50, 400);
             camera.lookAt(new THREE.Vector3(-400, -50, -120));
-            model.position.set(-320 * Math.cos(0), -50, 0)
+
             sprite.scale.set(110, 80, 1);
             sprite.position.set(0, -15, 180);
+
+            model.position.set(-120, 0, 220)
+            model.scale.set(0.22, 0.22, 0.22)
 
             spin = true;
         }
@@ -218,13 +225,13 @@ function meshDefault() {
     mercury.mesh.scale.set(2.5, 2.5, 2.5)
     venus.mesh.scale.set(1.4, 1.4, 1.4)
     earth.mesh.scale.set(1.8, 1.8, 1.8)
-    mars.mesh.scale.set(1.8, 1.8, 1.8)
+    mars.mesh.scale.set(1, 1, 1)
     jupiter.mesh.scale.set(0.24, 0.24, 0.24)
 
-    mercury.mesh.position.set(-100, 50, 120)
+    mercury.mesh.position.set(-140, 0, 70)
     venus.mesh.position.set(-60, 60, -10)
-    earth.mesh.position.set(-480, 100, 0)
-    mars.mesh.position.set(-507, 250, -240)
+    earth.mesh.position.set(-480, 100, 100)
+    mars.mesh.position.set(-300, 70, 100)
     jupiter.mesh.position.set(-170, -20, 300)
 }
 function createPlanete(size, texture, position, name) {
@@ -245,6 +252,7 @@ function onWindowResize() {
     camera.aspect = window.innerWidth / window.innerHeight;
     renderer.setSize(window.innerWidth, window.innerHeight);
 }
+
 scene.updateMatrixWorld(true);
 
 var domEvents = new THREEx.DomEvents(camera, renderer.domElement)
@@ -266,7 +274,8 @@ function plView() {
     venus.mesh.scale.set(1, 1, 1)
     earth.mesh.scale.set(1, 1, 1)
     mars.mesh.scale.set(0.7, 0.7, 0.7)
-    model.scale.set(0.7, 0.7, 0.7)
+    model.scale.set(0.22, 0.22, 0.22)
+
 }
 function animateModel() {
     // meshDefault()
@@ -274,7 +283,7 @@ function animateModel() {
     plView()
     spin = false;
     modelClick = true;
-    model.scale.set(0.7, 0.7, 0.7)
+    model.scale.set(0.5, 0.5, 0.5)
     // position
     model.position.set(0, 0, 0)
     // body
