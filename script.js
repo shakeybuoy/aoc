@@ -1,9 +1,6 @@
 // import { OrbitControls } from "//cdn.skypack.dev/three@0.134/examples/jsm/controls/OrbitControls?min";
 
 var mesh;
-const coreTexture = "./images/core.jpg";
-const thirdSide = "./images/stars.jpeg";
-const sun = "./images/star.png";
 const mercuryTexture = "./images/mercury.png";
 const venusTexture = "./images/venus.jpeg";
 const earthTexture = "./images/earth.png";
@@ -15,7 +12,7 @@ var renderer, scene, camera, x, y, z, model, mercury, venus, earth, mars, jupite
     , earthClick
     , marsClick
     , jupiterClick,
-    modelClick, stars, starGeo
+    modelClick, geoStar, starMesh, star
 var spin = true;
 let r = 70;
 var raycaster, mouse;
@@ -42,6 +39,7 @@ function init() {
     document.body.appendChild(renderer.domElement);
 
     scene = new THREE.Scene();
+    scene.fog = new THREE.FogExp2(0x000000, 0.0008);
 
     camera = new THREE.PerspectiveCamera(
         35,
@@ -65,6 +63,8 @@ function init() {
         camera.lookAt(new THREE.Vector3(-400, -50, -120));
     }
     else {
+        // const controls = new OrbitControls(camera, renderer.domElement);
+        // controls.update();
         camera.position.set(100, 50, 400);
         camera.lookAt(new THREE.Vector3(-400, -50, -120));
     }
@@ -114,32 +114,35 @@ function init() {
     };
     setFalse()
 
-    // scene.add(new THREE.AxesHelper(1000))
-
-    // starGeo = new THREE.Geometry();
-    // for (let i = 0; i < 10000; i++) {
-    //     stars = new THREE.Vector3(
-    //         Math.random() * 600 - 500,
-    //         Math.random() * 600 - 300,
-    //         Math.random() * 600 - 300
-    //     );
-    //     stars.velocity = 0;
-    //     stars.acceleration = 0.00002;
-    //     starGeo.vertices.push(stars);
-    // }
-
-    // let spriteOne = new THREE.TextureLoader().load('./images/star.png');
-    // let starMaterial = new THREE.PointsMaterial({
-    //     color: 0xaaaaaa,
-    //     size: 0.1,
-    //     map: spriteOne
-    // });
-
-    // stars = new THREE.Points(starGeo, starMaterial);
-    // scene.add(stars);
+    scene.add(new THREE.AxesHelper(1000))
 
     const bgSpace = new THREE.TextureLoader().load('./images/Untitled_design_16.png');
     scene.background = bgSpace;
+
+    addStars()
+    function addStars() {
+        geoStar = new THREE.Geometry();
+        for (let i = 0; i < 10000; i++) {
+            star = new THREE.Vector3(
+                Math.random() * 1000 - 600,
+                Math.random() * 800 - 600,
+                Math.random() * 800 - 600
+            );
+            star.velocity = 0;
+            star.acceleration = 0.0002;
+            geoStar.vertices.push(star);
+        }
+
+        let sprite = new THREE.TextureLoader().load('./images/particle-sprite.png');
+        let starMesh = new THREE.PointsMaterial({
+            color: 0xffffff,
+            size: 0.1,
+            // map: sprite
+        });
+
+        star = new THREE.Points(geoStar, starMesh);
+        scene.add(star);
+    }
 
 
     // Lights
@@ -162,6 +165,7 @@ function init() {
     loadModel();
     renderer.domElement.addEventListener('click', onClick, false);
 }
+
 
 function loadModel() {
     var loader = new THREE.GLTFLoader();
@@ -518,7 +522,6 @@ function animate() {
             mars.mesh.rotateY(0.0018);
             jupiter.mesh.rotateY(0.004);
             model.rotateY(0.002)
-
             var camera7 = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.01, 1000);
             camera7.position.z = 250;
             camera7.focalLength = 1000;
@@ -529,23 +532,24 @@ function animate() {
             renderer.render(scene, camera7);
         }
     }
-    mercury.mesh.rotateY(0.004);
-    venus.mesh.rotateY(0.002);
-    earth.mesh.rotateY(0.002);
+    mercury.mesh.rotateY(0.0004);
+    venus.mesh.rotateY(0.0002);
+    earth.mesh.rotateY(0.0002);
     mars.mesh.rotateY(0.0018);
-    jupiter.mesh.rotateY(0.004);
+    jupiter.mesh.rotateY(0.00047);
     model.rotateY(0.002)
-    // starGeo.vertices.forEach(p => {
-    //     p.velocity += p.acceleration
-    //     p.z -= p.velocity;
+    geoStar.vertices.forEach(p => {
+        p.velocity += p.acceleration
+        p.z += p.velocity;
 
-    //     if (p.z < -200) {
-    //         p.z = 200;
-    //         p.velocity = 0;
-    //     }
-    // });
-    // starGeo.verticesNeedUpdate = true;
-    // stars.rotation.z += 0.0002;
+        if (p.z > 400) {
+            p.z = -100;
+            p.velocity = 0;
+        }
+    });
+    geoStar.verticesNeedUpdate = true;
+    star.rotation.z += 0.0004;
+
 
 }
 
