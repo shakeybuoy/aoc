@@ -537,19 +537,24 @@ function animate() {
     mars.mesh.rotateY(0.0018);
     jupiter.mesh.rotateY(0.00047);
     model.rotateY(0.002)
-    geoStar.vertices.forEach(p => {
-        p.velocity += p.acceleration
-        p.z += p.velocity;
+    // geoStar.vertices.forEach(p => {
+    //     p.velocity += p.acceleration
+    //     p.z += p.velocity;
 
-        if (p.z > 400) {
-            p.z = -100;
-            p.velocity = 0;
-        }
-    });
+    //     if (p.z > 400) {
+    //         p.z = -100;
+    //         p.velocity = 0;
+    //     }
+    // });
     geoStar.verticesNeedUpdate = true;
     // star.rotation.z += 0.0004;
     // star.rotation.x += 0.0004;
-    star.rotation.y += 0.00004;
+    let i = 0.0004
+    if (i < 0.009) {
+        star.rotation.z += i;
+    } else {
+        i = 0.0004
+    }
 
 
 
