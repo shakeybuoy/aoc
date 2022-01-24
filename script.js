@@ -39,7 +39,6 @@ function init() {
     document.body.appendChild(renderer.domElement);
 
     scene = new THREE.Scene();
-    scene.fog = new THREE.FogExp2(0x000000, 0.0008);
 
     camera = new THREE.PerspectiveCamera(
         35,
@@ -136,7 +135,7 @@ function init() {
         let sprite = new THREE.TextureLoader().load('./images/particle-sprite.png');
         let starMesh = new THREE.PointsMaterial({
             color: 0xffffff,
-            size: 0.1,
+            size: 0.3,
             // map: sprite
         });
 
@@ -548,7 +547,10 @@ function animate() {
         }
     });
     geoStar.verticesNeedUpdate = true;
-    star.rotation.z += 0.0004;
+    // star.rotation.z += 0.0004;
+    // star.rotation.x += 0.0004;
+    star.rotation.y += 0.00004;
+
 
 
 }
