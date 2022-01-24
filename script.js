@@ -113,7 +113,7 @@ function init() {
     };
     setFalse()
 
-    scene.add(new THREE.AxesHelper(1000))
+    // scene.add(new THREE.AxesHelper(1000))
 
     const bgSpace = new THREE.TextureLoader().load('./images/Untitled_design_16.png');
     scene.background = bgSpace;
@@ -231,10 +231,10 @@ function meshDefault() {
     mars.mesh.scale.set(1, 1, 1)
     jupiter.mesh.scale.set(0.24, 0.24, 0.24)
 
-    mercury.mesh.position.set(-140, 0, 70)
+    mercury.mesh.position.set(-140, 40, 20)
     venus.mesh.position.set(-60, 60, -10)
     earth.mesh.position.set(-480, 100, 100)
-    mars.mesh.position.set(-300, 70, 100)
+    mars.mesh.position.set(-300, 100, 0)
     jupiter.mesh.position.set(-170, -20, 300)
 }
 function createPlanete(size, texture, position, name) {
