@@ -8,9 +8,9 @@
     <link rel="stylesheet" href="./css/styles.css" />
   </head>
   <body>
-    <!-- <div id="preloader">
+    <div id="preloader">
       <div class="p">LOADING</div>
-    </div> -->
+    </div>
     <!-- <div class="center-image">
       <img src="./images/olm.webp" alt="olm" width="60%" />
     </div> -->
@@ -32,11 +32,11 @@
         <div id="container">
           <div id="content">
             <ul>
-              <li>Home</li>
-              <li>Page1</li>
-              <li>Page2</li>
-              <li>Page3</li>
-              <li>Page4</li>
+              <li><a href="">Home</a></li>
+              <li><a href="">Page1</a></li>
+              <li><a href="">Page2</a></li>
+              <li><a href="">Page3</a></li>
+              <li><a href="">Page4</a></li>
             </ul>
           </div>
         </div>
@@ -71,13 +71,43 @@
       style="display: none"
     >
       <source
-        src="https://ak.picdn.net/shutterstock/videos/1071466510/preview/stock-footage-giant-deep-space-alien-spiral-galaxy-concept-d-animation-loop-of-revolving-galactic-stellar-milky.webm"
+        src="https://ak.picdn.net/shutterstock/videos/1069631707/preview/stock-footage--k-d-seamless-loop-of-shinny-stars-animation-on-black-background-graphic-motion-overlay-effect.webm"
+        type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'
+      />
+    </video>
+    <video
+      id="videoOnClick"
+      loop
+      autoplay
+      muted
+      crossorigin="anonymous"
+      playsinline
+      width="100%"
+      style="display: none"
+    >
+      <source
+        src="https://ak.picdn.net/shutterstock/videos/1034225552/preview/stock-footage-abstract-hyperspace-background-speed-of-light-neon-glowing-rays-and-stars-in-motion-moving.webm"
+        type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'
+      />
+    </video>
+    <video
+      id="videoOnDestroyed"
+      loop
+      autoplay
+      muted
+      crossorigin="anonymous"
+      playsinline
+      width="100%"
+      style="display: none"
+    >
+      <source
+        src="https://ak.picdn.net/shutterstock/videos/1063742545/preview/stock-footage-supermassive-black-hole-rotation-loop-with-twinkle-stars-k-rotating-black-hole-spiral-galaxy.webm"
         type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'
       />
     </video>
     <div id="popUp" class="popUp">
       <button id="backButton">Back</button>
-      <!--  <div class="content">
+      <div class="content">
         <img src="./images/frame.png" alt="frame" />
         <div class="text">
           <h1 class="plName" id="plName"></h1>
@@ -86,7 +116,6 @@
           </div>
         </div>
       </div>
-      -->
     </div>
     <script>
       var ham = document.getElementById("hamburger");
@@ -102,32 +131,32 @@
     <script src="./scripts/jquey.bez.js"></script>
     <script src="./scripts/pace.js"></script>
     <script>
-      // paceOptions = {
-      //   ajax: true,
-      //   document: true,
-      //   eventLag: false,
-      // };
+      paceOptions = {
+        ajax: true,
+        document: true,
+        eventLag: false,
+      };
 
-      // Pace.on("done", function () {
-      //   $(".p")
-      //     .delay(500)
-      //     .animate(
-      //       { top: "30%", opacity: "0" },
-      //       1000,
-      //       $.bez([0.19, 1, 0.22, 1])
-      //     );
+      Pace.on("done", function () {
+        $(".p")
+          .delay(500)
+          .animate(
+            { top: "30%", opacity: "0" },
+            1000,
+            $.bez([0.19, 1, 0.22, 1])
+          );
 
-      //   $("#preloader")
-      //     .delay(1500)
-      //     .animate({ top: "-110vh" }, 2000, $.bez([0.19, 1, 0.22, 1]));
+        $("#preloader")
+          .delay(1500)
+          .animate({ top: "-110vh" }, 2000, $.bez([0.19, 1, 0.22, 1]));
 
-      //   TweenMax.from(".main", 2, {
-      //     delay: 2,
-      //     y: 20,
-      //     opacity: 0,
-      //     ease: Expo.easeInOut,
-      //   });
-      // });
+        TweenMax.from(".main", 2, {
+          delay: 2,
+          y: 20,
+          opacity: 0,
+          ease: Expo.easeInOut,
+        });
+      });
     </script>
     <script src="./scripts/threex.domevents.js"></script>
     <script src="./scripts/tween.js"></script>

@@ -19,6 +19,12 @@ var raycaster, mouse;
 var plName = document.getElementById('plName')
 var popUp = document.getElementById('popUp')
 var para = document.getElementById('para')
+let video = document.getElementById('video');
+let videoOnClick = document.getElementById('videoOnClick');
+let vidClickText = new THREE.VideoTexture(videoOnClick);
+let vidText = new THREE.VideoTexture(video);
+let videoOnDestroyed = document.getElementById('videoOnDestroyed');
+let videoOnDestroyedClick = new THREE.VideoTexture(videoOnDestroyed);
 init();
 animate();
 
@@ -117,10 +123,7 @@ function init() {
 
     // const bgSpace = new THREE.TextureLoader().load('./images/Untitled_design_16.png');
     // scene.background = bgSpace;
-    let video = document.getElementById('video');
 
-    let vidText = new THREE.VideoTexture(video);
-    scene.background = vidText
     // addStars()
     // function addStars() {
     //     geoStar = new THREE.Geometry();
@@ -412,9 +415,13 @@ function animate() {
         renderer.setClearColor(0x000000, 0);
         renderer.setViewport(0, 0, window.innerWidth, window.innerHeight);
         renderer.render(scene, camera);
+        scene.background = vidText
+
 
     } else {
         if (modelClick == true) {
+            scene.background = videoOnDestroyedClick
+
             mercury.mesh.rotateY(0.004);
             venus.mesh.rotateY(0.002);
             earth.mesh.rotateY(0.002);
@@ -432,6 +439,8 @@ function animate() {
             renderer.setViewport(0, 0, window.innerWidth, window.innerHeight);
             renderer.render(scene, camera1);
         } else if (mercuryClick == true) {
+            scene.background = vidClickText
+
             mercury.mesh.rotateY(0);
             venus.mesh.rotateY(0.002);
             earth.mesh.rotateY(0.002);
@@ -448,6 +457,8 @@ function animate() {
             renderer.setViewport(0, 0, window.innerWidth, window.innerHeight);
             renderer.render(scene, camera2);
         } else if (venusClick == true) {
+            scene.background = vidClickText
+
             mercury.mesh.rotateY(0.004);
             venus.mesh.rotateY(0);
             earth.mesh.rotateY(0.002);
@@ -466,6 +477,8 @@ function animate() {
             renderer.render(scene, camera3);
         }
         else if (earthClick == true) {
+            scene.background = vidClickText
+
             mercury.mesh.rotateY(0.004);
             venus.mesh.rotateY(0.002);
             earth.mesh.rotateY(0);
@@ -483,6 +496,8 @@ function animate() {
             renderer.setViewport(0, 0, window.innerWidth, window.innerHeight);
             renderer.render(scene, camera4);
         } else if (marsClick == true) {
+            scene.background = vidClickText
+
             mercury.mesh.rotateY(0.004);
             venus.mesh.rotateY(0.002);
             earth.mesh.rotateY(0.002);
@@ -501,6 +516,8 @@ function animate() {
             renderer.render(scene, camera5);
         }
         else if (jupiterClick == true) {
+            scene.background = vidClickText
+
             mercury.mesh.rotateY(0.004);
             venus.mesh.rotateY(0.002);
             earth.mesh.rotateY(0.002);
@@ -518,6 +535,8 @@ function animate() {
             renderer.setViewport(0, 0, window.innerWidth, window.innerHeight);
             renderer.render(scene, camera6);
         } else if (olympiaClick == true) {
+            scene.background = vidClickText
+
             mercury.mesh.rotateY(0.004);
             venus.mesh.rotateY(0.002);
             earth.mesh.rotateY(0.002);
@@ -540,25 +559,6 @@ function animate() {
     mars.mesh.rotateY(0.0018);
     jupiter.mesh.rotateY(0.00047);
     model.rotateY(0.002)
-    // geoStar.vertices.forEach(p => {
-    //     p.velocity += p.acceleration
-    //     p.z += p.velocity;
-
-    //     if (p.z > 400) {
-    //         p.z = -100;
-    //         p.velocity = 0;
-    //     }
-    // });
-    // geoStar.verticesNeedUpdate = true;
-    // star.rotation.z += 0.0004;
-    // star.rotation.x += 0.0004;
-    // let i = 0.0004
-    // if (i < 0.009) {
-    //     star.rotation.z += i;
-    // } else {
-    //     i = 0.0004
-    // }
-
 
 
 }
