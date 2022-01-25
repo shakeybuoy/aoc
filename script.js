@@ -21,9 +21,12 @@ var popUp = document.getElementById('popUp')
 var para = document.getElementById('para')
 let video = document.getElementById('video');
 let videoOnClick = document.getElementById('videoOnClick');
+let videoOnDestroyed = document.getElementById('videoOnDestroyed');
+video.play()
+videoOnClick.play()
+videoOnDestroyed.play()
 let vidClickText = new THREE.VideoTexture(videoOnClick);
 let vidText = new THREE.VideoTexture(video);
-let videoOnDestroyed = document.getElementById('videoOnDestroyed');
 let videoOnDestroyedClick = new THREE.VideoTexture(videoOnDestroyed);
 init();
 animate();
@@ -184,10 +187,10 @@ function loadModel() {
 
         },
         function (xhr) {
-            console.log((xhr.loaded / xhr.total) * 100 + '% loaded');
+            // console.log((xhr.loaded / xhr.total) * 100 + '% loaded');
         },
         function (error) {
-            console.log((error.message))
+            // console.log((error.message))
         }
     );
 
@@ -223,7 +226,7 @@ function onClick(event) {
         var name = intersects[0].object.parent.name;
 
         if (name == 'COMBINE_LP') {
-            console.log(name)
+            // console.log(name)
             animateModel()
         }
     }
@@ -553,13 +556,18 @@ function animate() {
             renderer.render(scene, camera7);
         }
     }
-    mercury.mesh.rotateY(0.0004);
-    venus.mesh.rotateY(0.0002);
-    earth.mesh.rotateY(0.0002);
-    mars.mesh.rotateY(0.0018);
-    jupiter.mesh.rotateY(0.00047);
-    model.rotateY(0.002)
 
+    try {
+        mercury.mesh.rotateY(0.0004);
+        venus.mesh.rotateY(0.0002);
+        earth.mesh.rotateY(0.0002);
+        mars.mesh.rotateY(0.0018);
+        jupiter.mesh.rotateY(0.00047);
+        model.rotateY(0.002)
+
+    } catch (e) {
+        // console.log(e)
+    }
 
 }
 
