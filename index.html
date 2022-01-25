@@ -15,31 +15,32 @@
       <img src="./images/olm.webp" alt="olm" width="60%" />
     </div> -->
     <div class="main">
-      <!-- <header class="dropdown">
-        <div class="dropdown-content">
-          <div class="imgDiv">
-            <img
-              src="https://ageofcrusade.com/images/favicons/apple-icon-114x114.png"
-              alt="AOC LOGO"
+      <div class="container">
+        <div id="hamburger" onclick="myfunction()">
+          <svg width="70" viewBox="0 0 100 100">
+            <path
+              class="line line1"
+              d="M 20,29.000046 H 80.000231 C 80.000231,29.000046 94.498839,28.817352 94.532987,66.711331 94.543142,77.980673 90.966081,81.670246 85.259173,81.668997 79.552261,81.667751 75.000211,74.999942 75.000211,74.999942 L 25.000021,25.000058"
             />
-          </div>
-          <div class="pageLink">
-            <h1>Home</h1>
-          </div>
-          <div class="pageLink">
-            <h1>Page1</h1>
-          </div>
-          <div class="pageLink">
-            <h1>Page2</h1>
-          </div>
-          <div class="pageLink">
-            <h1>Page3</h1>
-          </div>
-          <div class="pageLink">
-            <h1>Page4</h1>
+            <path class="line line2" d="M 20,50 H 80" />
+            <path
+              class="line line3"
+              d="M 20,70.999954 H 80.000231 C 80.000231,70.999954 94.498839,71.182648 94.532987,33.288669 94.543142,22.019327 90.966081,18.329754 85.259173,18.331003 79.552261,18.332249 75.000211,25.000058 75.000211,25.000058 L 25.000021,74.999942"
+            />
+          </svg>
+        </div>
+        <div id="container">
+          <div id="content">
+            <ul>
+              <li>Home</li>
+              <li>Page1</li>
+              <li>Page2</li>
+              <li>Page3</li>
+              <li>Page4</li>
+            </ul>
           </div>
         </div>
-      </header> -->
+      </div>
 
       <!-- <navbar>
         <div>
@@ -59,7 +60,21 @@
         <div><a href="#" class="linkHref">Contact Us</a></div>
       </navbar> -->
     </div>
-
+    <video
+      id="video"
+      loop
+      autoplay
+      muted
+      crossorigin="anonymous"
+      playsinline
+      width="100%"
+      style="display: none"
+    >
+      <source
+        src="https://ak.picdn.net/shutterstock/videos/1071466510/preview/stock-footage-giant-deep-space-alien-spiral-galaxy-concept-d-animation-loop-of-revolving-galactic-stellar-milky.webm"
+        type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'
+      />
+    </video>
     <div id="popUp" class="popUp">
       <button id="backButton">Back</button>
       <!--  <div class="content">
@@ -73,7 +88,16 @@
       </div>
       -->
     </div>
-
+    <script>
+      var ham = document.getElementById("hamburger");
+      var container = document.getElementById("container");
+      var content = document.getElementById("content");
+      function myfunction() {
+        ham.classList.toggle("open");
+        content.classList.toggle("open");
+        container.classList.toggle("open");
+      }
+    </script>
     <script src="./scripts/jquery.js"></script>
     <script src="./scripts/jquey.bez.js"></script>
     <script src="./scripts/pace.js"></script>

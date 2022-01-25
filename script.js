@@ -115,33 +115,36 @@ function init() {
 
     // scene.add(new THREE.AxesHelper(1000))
 
-    const bgSpace = new THREE.TextureLoader().load('./images/Untitled_design_16.png');
-    scene.background = bgSpace;
+    // const bgSpace = new THREE.TextureLoader().load('./images/Untitled_design_16.png');
+    // scene.background = bgSpace;
+    let video = document.getElementById('video');
 
-    addStars()
-    function addStars() {
-        geoStar = new THREE.Geometry();
-        for (let i = 0; i < 10000; i++) {
-            star = new THREE.Vector3(
-                Math.random() * 1000 - 600,
-                Math.random() * 800 - 600,
-                Math.random() * 800 - 600
-            );
-            star.velocity = 0;
-            star.acceleration = 0.0002;
-            geoStar.vertices.push(star);
-        }
+    let vidText = new THREE.VideoTexture(video);
+    scene.background = vidText
+    // addStars()
+    // function addStars() {
+    //     geoStar = new THREE.Geometry();
+    //     for (let i = 0; i < 10000; i++) {
+    //         star = new THREE.Vector3(
+    //             Math.random() * 1000 - 600,
+    //             Math.random() * 800 - 600,
+    //             Math.random() * 800 - 600
+    //         );
+    //         star.velocity = 0;
+    //         star.acceleration = 0.0002;
+    //         geoStar.vertices.push(star);
+    //     }
 
-        let sprite = new THREE.TextureLoader().load('./images/particle-sprite.png');
-        let starMesh = new THREE.PointsMaterial({
-            color: 0xffffff,
-            size: 0.3,
-            // map: sprite
-        });
+    //     let sprite = new THREE.TextureLoader().load('./images/particle-sprite.png');
+    //     let starMesh = new THREE.PointsMaterial({
+    //         color: 0xffffff,
+    //         size: 0.3,
+    //         // map: sprite
+    //     });
 
-        star = new THREE.Points(geoStar, starMesh);
-        scene.add(star);
-    }
+    //     star = new THREE.Points(geoStar, starMesh);
+    //     scene.add(star);
+    // }
 
 
     // Lights
@@ -546,15 +549,15 @@ function animate() {
     //         p.velocity = 0;
     //     }
     // });
-    geoStar.verticesNeedUpdate = true;
+    // geoStar.verticesNeedUpdate = true;
     // star.rotation.z += 0.0004;
     // star.rotation.x += 0.0004;
-    let i = 0.0004
-    if (i < 0.009) {
-        star.rotation.z += i;
-    } else {
-        i = 0.0004
-    }
+    // let i = 0.0004
+    // if (i < 0.009) {
+    //     star.rotation.z += i;
+    // } else {
+    //     i = 0.0004
+    // }
 
 
 
